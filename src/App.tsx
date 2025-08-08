@@ -1,9 +1,20 @@
 import React from 'react';
 import { BookOpen, Trophy, Users, Clock, CheckCircle, Star, ArrowRight, Play, Award, Target, Zap } from 'lucide-react';
 
+// Declaração da função gtag_report_conversion para o TypeScript reconhecer
+declare global {
+  interface Window {
+    gtag_report_conversion: (url?: string) => boolean;
+  }
+}
+
+// Garantir que a função esteja disponível no escopo do React
+const gtag_report_conversion = window.gtag_report_conversion;
+
 function App() {
   const handleAffiliateClick = () => {
-    window.open('https://afiliados.grancursosonline.com.br/idevaffiliate.php?id=2557_39', '_blank');
+    // Registra a conversão e redireciona para a URL de afiliado
+    return gtag_report_conversion('https://afiliados.grancursosonline.com.br/idevaffiliate.php?id=2557_39');
   };
 
   return (
